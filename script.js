@@ -1,24 +1,46 @@
+
+/* =========================================================
+   NAVBAR ACTIVE LINK
+========================================================= */
+
 const navLinks = document.querySelectorAll(".navbar nav a");
+
 navLinks.forEach((link) => {
     link.addEventListener("click", function () {
+
         navLinks.forEach((item) => {
             item.classList.remove("active");
         });
-        this.classList.add("active");
 
+        this.classList.add("active");
     });
 });
-window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-        navbar.style.background = "#06151e";
-        navbar.style.boxShadow = "0 5px 25px rgba(0,0,0,0.25)";
-    } else {
-        navbar.style.background = "#071923";
-        navbar.style.boxShadow = "none";
 
+
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
+
+window.addEventListener("scroll", () => {
+
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+
+        if (window.scrollY > 50) {
+
+            navbar.style.background = "#06151e";
+            navbar.style.boxShadow = "0 5px 25px rgba(0,0,0,0.25)";
+
+        } else {
+
+            navbar.style.background = "#071923";
+            navbar.style.boxShadow = "none";
+
+        }
     }
 });
+
 
 /* =========================================================
    ABOUT SECTION ANIMATION
@@ -38,9 +60,7 @@ if (aboutSection) {
                     aboutSection.classList.add("animate");
 
                     aboutObserver.unobserve(aboutSection);
-
                 }
-
             });
 
         },
@@ -51,6 +71,8 @@ if (aboutSection) {
 
     aboutObserver.observe(aboutSection);
 }
+
+
 /* =========================================================
    SERVICES SECTION - ONE BY ONE ANIMATION
 ========================================================= */
@@ -69,9 +91,7 @@ if (servicesSection) {
                     servicesSection.classList.add("animate");
 
                     servicesObserver.unobserve(servicesSection);
-
                 }
-
             });
 
         },
@@ -82,6 +102,7 @@ if (servicesSection) {
 
     servicesObserver.observe(servicesSection);
 }
+
 
 /* =========================================================
    SKILLS SECTION - ONE BY ONE ANIMATION
@@ -101,9 +122,7 @@ if (skillsSection) {
                     skillsSection.classList.add("animate");
 
                     skillsObserver.unobserve(skillsSection);
-
                 }
-
             });
 
         },
@@ -114,6 +133,8 @@ if (skillsSection) {
 
     skillsObserver.observe(skillsSection);
 }
+
+
 /* =========================================================
    PROJECTS SECTION - ONE BY ONE ANIMATION
 ========================================================= */
@@ -132,9 +153,7 @@ if (projectsSection) {
                     projectsSection.classList.add("animate");
 
                     projectsObserver.unobserve(projectsSection);
-
                 }
-
             });
 
         },
@@ -145,6 +164,7 @@ if (projectsSection) {
 
     projectsObserver.observe(projectsSection);
 }
+
 
 /* =========================================================
    CONTACT SECTION - ONE BY ONE ANIMATION
@@ -164,9 +184,7 @@ if (contactSection) {
                     contactSection.classList.add("animate");
 
                     contactObserver.unobserve(contactSection);
-
                 }
-
             });
 
         },
@@ -177,3 +195,41 @@ if (contactSection) {
 
     contactObserver.observe(contactSection);
 }
+
+
+/* =========================================================
+   CONTACT FORM - SEND MESSAGE TO WHATSAPP
+========================================================= */
+
+function sendToWhatsApp(event) {
+
+    event.preventDefault();
+
+    // Get form values
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    // Create WhatsApp message
+    const whatsappMessage =
+        `Hello Yuvarani,
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}`;
+
+    // Your WhatsApp number
+    const phoneNumber = "919342479269";
+
+    // Create WhatsApp URL
+    const whatsappURL =
+        `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    // Open WhatsApp
+    window.open(whatsappURL, "_blank");
+}
+
